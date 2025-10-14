@@ -1,4 +1,4 @@
-from piece.piece_one import PieceOne
+from piece.piece import Piece
 from board.board import Board
 import time
 
@@ -6,11 +6,11 @@ def main():
     print("Hello world")
 
     center_x = 2
-    center_y = 3
-    x_positions = [2,2, 1, 3]
-    y_positions = [3,4, 3, 3]
+    center_y = 2
+    x_positions = [1,2, 2, 3, 0]
+    y_positions = [2,2, 3, 2, 2]
 
-    piece = PieceOne(x_positions,y_positions,center_x,center_y)
+    piece = Piece(x_positions,y_positions,center_x,center_y)
 
     board = Board(5,5)
 

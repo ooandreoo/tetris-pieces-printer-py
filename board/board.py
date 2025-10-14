@@ -1,4 +1,4 @@
-from piece.piece_one import PieceOne
+from piece.piece import Piece
 import os
 
 class Board:
@@ -20,7 +20,7 @@ class Board:
         return True
 
     def tick(self):
-        self.piece.move()
+        self.piece.rotate("right",90)
         self.clear()
 
     def clear(self):
