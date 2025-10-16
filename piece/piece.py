@@ -14,7 +14,7 @@ class Piece:
         self.y_positions = [x-1 for x in self.y_positions]
 
     def rotate(self, direction = "right", degrees = 90):
-        new_positions = rotate_positions(self.get_positions(), (self.center_x,self.center_y), degrees)
+        new_positions = rotate_positions(self.get_positions(), (self.center_x,self.center_y), degrees, direction)
         self.x_positions, self.y_positions = zip(*new_positions)
         self.x_positions = list(self.x_positions)
         self.y_positions = list(self.y_positions)
