@@ -20,7 +20,8 @@ class Board:
         return True
 
     def tick(self):
-        self.piece.rotate("right",90)
+        #self.piece.rotate("right",90)
+        self.piece.move()
         self.clear()
 
     def clear(self):

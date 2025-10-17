@@ -43,6 +43,11 @@
 #       0
 #         0 1 2 3 4
 
+def get_x_axis_value(pair):
+    return pair[0]
+
+def get_y_axis_value(pair):
+    return pair[1]
 
 def rotate_positions(positions, center, degrees=90, direction="right"):
     if(direction not in ["right","left"]):
@@ -66,21 +71,25 @@ def rotate_positions(positions, center, degrees=90, direction="right"):
 
 def get_new_position_after_rotation(position, center, rotations):
     # new positions are the result of moving from the current position ...
-    new_x = position[0]
-    new_y = position[1]
+    new_x = get_x_axis_value(position)
+    new_y = get_y_axis_value(position)
 
-    changes_component_x = get_position_changes_for_component(0,position, center, rotations)
-    changes_component_y = get_position_changes_for_component(1,position, center, rotations)
+    changes_component_x = get_position_changes_for_component("x",position, center, rotations)
+    changes_component_y = get_position_changes_for_component("y",position, center, rotations)
 
     # in addition to modifications needed by rotating each component (x and y)
-    new_x += changes_component_x[0] + changes_component_y[0]
-    new_y += changes_component_x[1] + changes_component_y[1]
+    new_x += get_x_axis_value(changes_component_x) + get_x_axis_value(changes_component_y)
+    new_y += get_y_axis_value(changes_component_x) + get_y_axis_value(changes_component_y)
 
     return (new_x,new_y)
 
 def get_position_changes_for_component(axis, position, center, rotations):
     # the modification of the state of axis x or axis y can have an impact on both coordinates
-    component = position[axis] - center[axis]
+    component = None
+    if(axis == "x"):
+        component = get_x_axis_value(position) - get_x_axis_value(center)
+    else:
+        component = get_y_axis_value(position) - get_y_axis_value(center)
 
     changes_x = 0
     changes_y = 0
@@ -103,8 +112,8 @@ def get_position_changes_for_component(axis, position, center, rotations):
         final_state = int((current_state + rotations)%4)
 
         # now we add the modifications needed by changing values
-        changes_y += (states[final_state][1]-states[current_state][1])*abs(component)
-        changes_x += (states[final_state][0]-states[current_state][0])*abs(component)
+        changes_y += (get_y_axis_value(states[final_state])-get_y_axis_value(states[current_state]))*abs(component)
+        changes_x += (get_x_axis_value(states[final_state])-get_x_axis_value(states[current_state]))*abs(component)
 
 
     return (changes_x, changes_y)
