@@ -100,7 +100,10 @@ def get_position_changes_for_component(axis, position, center, rotations):
 
         # we will convert this aux state into a tuple representing the current state of the component
         aux_state = [0,0]
-        aux_state[axis] = component/abs(component)
+        if(axis == "x"):
+            aux_state[0] = component/abs(component)
+        else:
+            aux_state[1] = component/abs(component)
         aux_state = tuple(aux_state)
 
         # we find the current state of the component
