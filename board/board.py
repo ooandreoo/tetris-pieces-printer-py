@@ -1,4 +1,6 @@
 from piece.piece import Piece
+from tools.piece_generator import PieceGenerator
+
 import os
 
 class Board:
@@ -6,10 +8,11 @@ class Board:
         self.height = height
         self.width = width
         self.matrix = [[0 for _ in range(width)] for _ in range(height)]
+        self.piece_generator = PieceGenerator(height,width)
         self.piece = None
 
-    def add_piece(self, piece):
-        self.piece = piece
+    def add_piece(self):
+        self.piece = self.piece_generator.generate_piece()
 
     def piece_has_room_within_matrix(self):
         piece_positions = self.piece.get_positions()
