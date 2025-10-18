@@ -12,6 +12,7 @@ class Piece:
 
     def move(self):
         self.y_positions = [x-1 for x in self.y_positions]
+        self.center_y -= 1
 
     def rotate(self, direction = "right", degrees = 90):
         new_positions = rotate_positions(self.get_positions(), (self.center_x,self.center_y), degrees, direction)

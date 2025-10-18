@@ -43,7 +43,7 @@ class Board:
         if(self.piece == None or self.piece_reached_bottom()):
             self.add_piece()
         else:
-            #self.piece.move()
+            self.piece.move()
             self.piece.rotate("right",90)
             #self.piece.move()
 
