@@ -10,9 +10,16 @@ class Piece:
     def get_positions(self):
         return list(zip(self.x_positions,self.y_positions))
 
-    def move(self):
-        self.y_positions = [x-1 for x in self.y_positions]
-        self.center_y -= 1
+    def move(self, direction="down"):
+        if(direction=="right"):
+            self.x_positions = [x+1 for x in self.x_positions]
+            self.center_x += 1
+        elif(direction=="left"):
+            self.x_positions = [x-1 for x in self.x_positions]
+            self.center_x -= 1
+        elif(direction=="down"):
+            self.y_positions = [x-1 for x in self.y_positions]
+            self.center_y -= 1
 
     def rotate(self, direction = "right", degrees = 90):
         new_positions = rotate_positions(self.get_positions(), (self.center_x,self.center_y), degrees, direction)

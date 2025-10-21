@@ -6,7 +6,7 @@ def main():
 
 
 
-    board = Board(5,10)
+    board = Board(10,20)
     board.start_loop()
 
 if __name__ == "__main__":
